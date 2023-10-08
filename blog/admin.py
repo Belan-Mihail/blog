@@ -12,10 +12,26 @@ from django_summernote.admin import SummernoteModelAdmin
 # 8 setting.py
 
 
-# 10 import summernote and delete admin.site.register(RecipePost) and add below
+# 10 import summernote and delete admin.site.register(RecipePost) and add bsummernote_fields = ('recipe_body')elow
 @admin.register(RecipePost)
 class RecipePostAdmin(SummernoteModelAdmin):
+    # 13 add filters
+    prepopulated_fields = {'slug': ('recipe_title',)}
+    search_fields = ['recipe_title', 'recipe_body']
+    list_filter = ('status', 'created_on')
     summernote_fields = ('recipe_body')
 
 # 11 migrate (without makemigrations)
 # 12 add test recipe post
+
+# 14
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'body', 'recipe_post', 'created_on', 'approved')
+    list_filter = ('approved', 'created_on')
+    search_fields = ('name', 'email', 'body')
+    actions = ['approve_comments']
+
+    def approve_comments(self, request, queryset):
+        queryset.update(approved=True)
+# views.py

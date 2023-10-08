@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% for post in recipes_post_list %}
+<p>{{ post.recipe_title }}</p>
+{% endfor%}  
+
+<h2>hello</h2>
+<p>hello</p>
+<!-- #20 comment chesk all work, connect index to base.html -->
+
+
+<!-- #19 sheck all work -->
+<!-- {% for post in recipes_post_list %}
+<p>{{ post.recipe_title }}</p>
+{% endfor%}     -->
+
+{%endblock%}

@@ -21,6 +21,9 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
+    # 18
+    path("", include("blog.urls"), name="blog-urls"),
+    # 19 index.html
 ]
 
 # 10 admin
