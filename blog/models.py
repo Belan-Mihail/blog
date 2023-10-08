@@ -32,13 +32,14 @@ class RecipePost(models.Model):
         verbose_name_plural = "recipes"
 
     def __str__(self):
-        return self.recipe_title + '(' + str(recipe_author) + ')'
+        return self.recipe_title
 
     def number_of_likes(self):
         return self.likes.count()
 
 # 4 create Comments model
 # 5 migrations
+# 6 admin
 
 class Comment(models.Model):
     recipe_post = models.ForeignKey(RecipePost, on_delete=models.CASCADE,

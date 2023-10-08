@@ -45,8 +45,11 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
+    'django_summernote',
     'blog',
 ]
+# 8 add summernote
+# 9 urls project
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
