@@ -6,3 +6,73 @@
 font-family: 'Inter', sans-serif;
 font-family: 'Young Serif', serif;
 */
+
+/* #22 color and ff */
+/* #23 base */
+
+/* General */
+
+:root {
+    --warning-color: #ffc107;
+    --dark-color: #343a40;
+    --light-color: #f8f9fa;
+    --success-color: #28a745;
+}
+
+* {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Young Serif', serif;
+    font-weight: 400;
+}
+
+/* #24 navbar */
+
+.logo {
+    color: var(--light-color);
+
+}
+
+.navbar-button {
+    background: var(--warning-color);
+    border-radius: 1rem;
+    color: var(--dark-color);
+    font-size: 1.2rem;
+    max-width: 12rem;
+}
+
+.dropdown-menu {
+    background: var(--dark-color);
+    color: var(--light-color); 
+}
+
+.dropdown-menu a {
+    color: var(--warning-color);
+    font-size: 1.2rem;
+}
+
+.dropdown-divider {
+    background: var(--light-color);
+}
+
+.toggler-special {
+    background: var(--warning-color);
+}
+
+/* #25 base html */
+
+/* #26 footer */
+
+.social-links a {
+    font-size: 2rem;
+    color: var(--light-color);
+    margin-right: .5rem;
+    margin: 1rem;
+}
+
+.social-links a:hover {
+    color: var(--warning-color);
+}
