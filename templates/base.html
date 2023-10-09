@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Delicious recipes</title>
 </head>
-<body>
+<body class="h-100">
     <!-- 23 add and edit navbar -->
     <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid">
@@ -57,7 +57,7 @@
         </div>
       </nav>
 
-    <main class="main-bg">
+    <main class="main-bg container">
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
