@@ -14,30 +14,35 @@
 <!-- #31 add default image and code and styles -->
 <!-- #32 add media queries -->
 <!-- #33 views.py -->
+<!-- #36 correct html and style -->
+<!-- #37 post detail -->
 
 <div class="row main-row">
   <div class="col-12 col-sm-7 col-md-8">
     {% for post in recipes_post_list %} 
       <article class="blog-post">
-        <a href="{% url 'recipe_post_detail' post.slug  %}">
+        <!-- 36  -->
+        <a class="post-link" href="{% url 'recipe_post_detail' post.slug  %}">
         <!-- 31 -->
         <div class="image-container-home-page">
           {% if "placeholder" in post.recipe_image.url %}
           <img class="card-img-home-page"
               src="https://res.cloudinary.com/dtnxukqxl/image/upload/v1696967358/project/lgzihdcgkyvtnpwmpugr.jpg">
           {% else %}
-          <img class="card-img-top" src=" {{ post.recipe_image.url }}">
+          <img class="card-img-home-page" src=" {{ post.recipe_image.url }}">
           {% endif %}
       </div>
       <!-- 31 end -->
         <h3 class="blog-post-title">{{ post.recipe_title }}</h3>
-        <p class="blog-post-meta"> creaeted {{ post.created_on}} by <a href="#">{{ post.recipe_author}}</a></p>
+        </a>
+        <p class="blog-post-meta text-muted"> Post creaeted {{ post.created_on}} by <a class="author" href="#"><strong>{{ post.recipe_author}}</strong></a></p>
 
         <p>{{ post.excerpt }}</p>
         <hr>
-        <p class="card-text text-muted h6">{{ post.updated_on}} <i class="far fa-heart"></i>
+        <!-- 36 -->
+        <p class="card-text text-muted h6"> Post updated {{ post.updated_on}} <i class="far fa-heart"></i>
             {{ post.number_of_likes }}</p>
-          </a>
+          
       </article>
     {% endfor%} 
       {% if is_paginated %}

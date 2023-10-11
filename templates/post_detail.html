@@ -2,8 +2,35 @@
 
 {% block content %}
 
-<!-- #36 add templates,  -->
-<h2 class="post-title">{{ post.title }}</h2>
-<p>234</p>
+<!-- #37 add templates  -->
+<!-- #38 add styles -->
+<h2 class="post-title-detail">{{ post.recipe_title }}</h2>
+
+<article class="post-detail">
+    
+
+    <div class="image-container-detail-page">
+        {% if "placeholder" in post.recipe_image.url %}
+        <img class="card-img-detail-page"
+            src="https://res.cloudinary.com/dtnxukqxl/image/upload/v1696967358/project/lgzihdcgkyvtnpwmpugr.jpg">
+        {% else %}
+        <img class="card-img-detail-page" src=" {{ post.recipe_image.url }}">
+        {% endif %}
+    </div>
+
+    
+
+    <p> {{ post.recipe_body | safe }}</p>
+    <hr>
+    <p class="blog-post-meta text-muted"> Post creaeted {{ post.created_on}} by <a class="author" href="#"><strong>{{ post.recipe_author}}</strong></a></p>
+    <p class="card-text text-muted h6"> Post updated {{ post.updated_on}} <i class="far fa-heart"></i>
+        {{ post.number_of_likes }}
+    </p>
+
+</article>
+
+
+
+
 
 {%endblock%}
