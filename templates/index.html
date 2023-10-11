@@ -2,32 +2,44 @@
 
 {% block content %}
 
+<div class="slogan-container">
+  <h2 class="slogan">Cooking is not chemistry. This is art</h2>
+</div>
+
 
 <!-- #27 comment all code. add main html from template -->
 <!-- #28 css -->
 <!-- #29 render data from database -->
 <!-- #30 add a-side more test topics -->
+<!-- #31 add default image and code and styles -->
+<!-- #32 add media queries -->
+<!-- #33 views.py -->
 
-<div class="row g-5">
-    
-    <div class="col-md-8"> 
+<div class="row main-row">
+  <div class="col-12 col-sm-7 col-md-8">
     {% for post in recipes_post_list %} 
       <article class="blog-post">
-        <h2 class="blog-post-title">{{ post.recipe_title }}</h2>
+        <a href="{% url 'recipe_post_detail' post.slug  %}">
+        <!-- 31 -->
+        <div class="image-container-home-page">
+          {% if "placeholder" in post.recipe_image.url %}
+          <img class="card-img-home-page"
+              src="https://res.cloudinary.com/dtnxukqxl/image/upload/v1696967358/project/lgzihdcgkyvtnpwmpugr.jpg">
+          {% else %}
+          <img class="card-img-top" src=" {{ post.recipe_image.url }}">
+          {% endif %}
+      </div>
+      <!-- 31 end -->
+        <h3 class="blog-post-title">{{ post.recipe_title }}</h3>
         <p class="blog-post-meta"> creaeted {{ post.created_on}} by <a href="#">{{ post.recipe_author}}</a></p>
 
         <p>{{ post.excerpt }}</p>
         <hr>
         <p class="card-text text-muted h6">{{ post.updated_on}} <i class="far fa-heart"></i>
             {{ post.number_of_likes }}</p>
+          </a>
       </article>
-    </div>
-
     {% endfor%} 
-    <!-- <nav class="blog-pagination" aria-label="Pagination">
-        <a class="btn btn-outline-primary" href="#">Older</a>
-        <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
-      </nav> -->
       {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
@@ -41,33 +53,39 @@
         </ul>
     </nav>
     {% endif %}
+  </div>
+  <div class="col-12 col-sm-5 col-md-4">
+    <div class="position-sticky" style="top: 2rem;">
+      <div class="p-4 mb-3 bg-light rounded">
+        <h4 class="fst-italic">About</h4>
+        <p class="mb-0">Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.</p>
+      </div>
 
-    <div class="col-md-4">
-      <div class="position-sticky" style="top: 2rem;">
-        <div class="p-4 mb-3 bg-light rounded">
-          <h4 class="fst-italic">About</h4>
-          <p class="mb-0">Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.</p>
-        </div>
+      <div class="p-4">
+        <h4 class="fst-italic">Archives</h4>
+      </div>
 
-        <div class="p-4">
-          <h4 class="fst-italic">Archives</h4>
-        </div>
-
-        <div class="p-4">
-          <h4 class="fst-italic">Elsewhere</h4>
-          <ol class="list-unstyled">
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">Facebook</a></li>
-          </ol>
-        </div>
+      <div class="p-4">
+        <h4 class="fst-italic">Elsewhere</h4>
+        <ol class="list-unstyled">
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ol>
       </div>
     </div>
-    
   </div>
+</div>
 
 
+    
+  
 
+
+<!-- <nav class="blog-pagination" aria-label="Pagination">
+        <a class="btn btn-outline-primary" href="#">Older</a>
+        <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+      </nav> -->
 
 <!-- {% for post in recipes_post_list %}
 <p>{{ post.recipe_title }}</p>
