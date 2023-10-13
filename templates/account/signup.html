@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+<!-- #51 edit template sign up -->
+<!-- #52 pip3 install django-crispy-forms==1.14.0 
+pip3 freeze --local > requirements.txt-->
+<!-- #53 settings -->
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock head_title %}
+
+{% block content %}
+<div class="row main-row">
+<h2>{% trans "Sign Up" %}</h2>
+
+<p>{% blocktrans %}Already have an account? Then please <a class="link-accent-color" href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="btn" type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
+</div>
+
+{% endblock content %}

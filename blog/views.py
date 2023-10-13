@@ -1,6 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import RecipePost
+from .forms import CommentForm
+
+# 56 import CommentForm and go to RecipePostDetail
+
 
 # 33 import View, get 404 function
 
@@ -37,5 +41,9 @@ class RecipePostDetail(View):
                 "post": post,
                 "comments": comments,
                 "liked": liked,
+                # 56
+                "comment_form": CommentForm()
+                # 57 details.html
             },
         )
+

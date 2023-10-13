@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+<!-- #50 edit template logout -->
+<!-- #51 edit template sign up -->
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock head_title %}
+
+{% block content %}
+<div class="row main-row">
+<h2>{% trans "Sign Out" %}</h2>
+
+<p>{% trans 'Are you sure you want to sign out?' %}</p>
+
+<form method="post" action="{% url 'account_logout' %}">
+  {% csrf_token %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+  {% endif %}
+  <button class="btn" type="submit">{% trans 'Sign Out' %}</button>
+</form>
+</div>
+
+{% endblock content %}

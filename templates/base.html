@@ -35,6 +35,8 @@
     <!-- https://unsplash.com/photos/uQs1802D0CQ -->
 </head>
 <body class="h-100">
+    <!-- 46 add login/logout if statments and urls to log <a> ({% url 'account_login' %})-->
+      <!-- 47 add user greetings html and css -->
     <!-- 23 add and edit navbar -->
     <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid">
@@ -44,22 +46,51 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
+              <!-- 46 -->
+              {% if user.is_authenticated %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle navbar-button" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Profile//Logout
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                </ul>
+              </li>
+              {% else %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbar-button" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Sign Up//Login
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Sing Up</a></li>
+                  <li><a class="dropdown-item" href="{% url 'account_signup' %}"">Sing Up</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Login</a></li>
+                  <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
                 </ul>
               </li>
+              {% endif %}
+              
             </ul>
           </div>
         </div>
       </nav>
+
 <!-- #32 main-container -->
     <main class="main-bg main-body">
+      <!-- #47 -->
+      <!-- #48
+      cp -r /workspace/.pyenv_mirror/user/current/lib/python3.11/site-packages/allauth/templates/* ./templates/allauth/
+      or
+      cp -r /workspace/.pyenv_mirror/user/current/lib/python3.11/site-packages/allauth/templates/* ./templates/
+      -->
+      <!-- 49 templates/account/login.html -->
+    {% if user.is_authenticated %}
+      <div class="user-greeting">
+            <span>you login as <strong>{{ user }}</strong></span>
+      </div>    
+    {% endif %}
+
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}

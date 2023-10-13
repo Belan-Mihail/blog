@@ -42,15 +42,38 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    # 42 'django.contrib.sites', 
+    'django.contrib.sites',
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
+    # 42 below (3)
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'django_summernote',
+    # 53 and below one more #53
+    'crispy_forms',
     'blog',
 ]
 # 8 add summernote
 # 9 urls project
 
+# 42 id login logout
+# 43 migrate (without make migration) - python3 manage.py migrate
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+# 53
+CRISPY_TEMPLATE_PACK = 'boostrap4'
+# 54 create forms.py in blog
+
+# 44 add 'allauth.account.middleware.AccountMiddleware'
+# 45 logout admin// runserver // go to /accounts/signup //add new 
+# 46 base html
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -59,6 +82,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -143,3 +167,9 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 39
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# 40 pip install django-allauth and pip3 freeze --local > requirements.txt
+# 41 urls project

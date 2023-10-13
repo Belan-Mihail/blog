@@ -24,6 +24,9 @@ urlpatterns = [
     # 18
     path("", include("blog.urls"), name="blog-urls"),
     # 19 index.html
+    path("accounts/", include("allauth.urls")),
+    # 41
+    # 42 settings
 ]
 
 # 10 admin
