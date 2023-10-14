@@ -251,10 +251,22 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   /* 57 */
+  /* 59 */
   /* comments */
   .comments-row {
     margin: 1.5rem 0;
+    gap: 1rem;
+    
   }
+
+    .post-comments-card {
+      margin: 1rem;
+    }
+
+    .comments-form {
+      margin-top: 1rem;
+    }
+  
 
   .comment-title {
     width: max-content;
@@ -275,6 +287,12 @@ h1, h2, h3, h4, h5, h6 {
   .comment-title a:hover {
     color: var(--light-color);
   }
+
+  .submit-comments {
+    margin-top: 1rem;
+  }
+
+  /* 60 add media queris for comments form  620px*/
 
   /* media queries */
 
@@ -297,6 +315,10 @@ h1, h2, h3, h4, h5, h6 {
 
     .blog-post-title {
         font-size: 1.5rem;
+    }
+/* 60 */
+    .comments-row {
+      flex-direction: column;
     }
 }
 

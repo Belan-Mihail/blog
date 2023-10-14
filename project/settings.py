@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django_summernote',
     # 53 and below one more #53
     'crispy_forms',
+    'crispy_bootstrap4',
     'blog',
 ]
 # 8 add summernote
@@ -68,7 +69,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # 53
-CRISPY_TEMPLATE_PACK = 'boostrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # 54 create forms.py in blog
 
 # 44 add 'allauth.account.middleware.AccountMiddleware'
