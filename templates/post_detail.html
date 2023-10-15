@@ -27,9 +27,30 @@
     <p> {{ post.recipe_body | safe }}</p>
     <hr>
     <p class="blog-post-meta text-muted"> Post creaeted {{ post.created_on}} by <a class="link-accent-color" href="#"><strong>{{ post.recipe_author}}</strong></a></p>
-    <p class="card-text text-muted h6"> Post updated {{ post.updated_on}} <i class="far fa-heart"></i>
-        {{ post.number_of_likes }}
-    </p>
+    <!-- 63 -->
+    <div class="d-flex wrapper-post-likes">
+    <p class="card-text text-muted h6"> Post updated {{ post.updated_on}} </p>
+        <!-- 63 add styles wrapper-post-likes-->
+        <!-- 64 urls -->
+            <strong>
+            {% if user.is_authenticated %}
+            <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
+                <span>{{ post.number_of_likes }} </span>
+                {% csrf_token %}
+                {% if liked %}
+                <button type="submit" value="{{post.slug}}" class="btn"><i class="fas fa-heart"></i></button>
+                {% else %}
+                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn"><i class="far fa-heart"></i></button>
+                {% endif %}
+            </form>
+            {% else %}
+            <span>{{ post.number_of_likes }} </span>
+            <span><i class="far fa-heart"></i></span>
+            {% endif %}
+            </strong>
+    </div>
+        
+    
 
     <!-- 57 display comments -->
 
@@ -57,15 +78,24 @@
  <!-- 59 add styles -->
         <div class="col-md-4">
             <div class="post-comments-card">
+                <!-- 61 and dont fogget add one more endif  -->
+                <!-- 62 views -->
+                {% if commented %}
+                <div class="alert alert-success" role="alert">
+                    Your comment is awaiting approval
+                </div>
+                {% else %}
+
                 {% if user.is_authenticated %}
 
                 <h3>Leave a comment:</h3>
-                <p>Posting as: {{ user }}</p>
+                <p>Posting as: {{ user.username }}</p>
                 <form method="post" class="comments-form">
                     {{ comment_form | crispy }}
                     {% csrf_token %}
                     <button type="submit" class="btn submit-comments">Submit</button>
                 </form>
+                {% endif %}
                 {% endif %}
             </div> 
         </div>

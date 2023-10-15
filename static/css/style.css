@@ -241,13 +241,18 @@ h1, h2, h3, h4, h5, h6 {
 
   .card-img-detail-page {
     width: 30rem;
-    max-height: 40rem;
+    max-height: max-content;
     object-fit: contain;
     float: left;
     margin-right: 1.5rem;
     border: .5rem solid var(--warning-color);
     border-radius: 2rem;
     
+  }
+/* 63 */
+  .wrapper-post-likes {
+    gap: 1rem;
+    align-items: baseline;
   }
 
   /* 57 */
@@ -294,6 +299,12 @@ h1, h2, h3, h4, h5, h6 {
 
   /* 60 add media queris for comments form  620px*/
 
+  /* 68 */
+  /* messages */ 
+  .messages-container {
+    margin-top: 1rem;
+  }
+
   /* media queries */
 
   @media screen and (max-width: 910px) {
@@ -307,6 +318,23 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+
+@media screen and (max-width: 760px) {
+  .card-img-detail-page {
+    float: unset;
+    margin: 0 auto;
+    width: 80%;
+  }
+
+  .image-container-detail-page {
+    margin-left: 15%;
+  }
+
+  .post-title-detail {
+    font-size: 2rem;
+  }
+}
+
 @media screen and (max-width: 620px) {
     .slogan {
         font-size: 1.5rem;
@@ -317,6 +345,7 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 1.5rem;
     }
 /* 60 */
+/* 61 views */
     .comments-row {
       flex-direction: column;
     }
@@ -331,5 +360,10 @@ h1, h2, h3, h4, h5, h6 {
     .blog-post-title {
         font-size: 1rem;
     }
+
+    .post-title-detail {
+      font-size: 1.5rem;
+    }
+
 
 }

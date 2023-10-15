@@ -14,6 +14,8 @@ from pathlib import Path
 
 import os
 import dj_database_url
+# 65 and TAGS
+from django.contrib.messages import constants as messages
 if os.path.isfile('env.py'):
     import env
 
@@ -71,6 +73,16 @@ LOGOUT_REDIRECT_URL = '/'
 # 53
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # 54 create forms.py in blog
+
+# 65 TAGS
+# 66 BASE html below nav
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-info',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+    }
 
 # 44 add 'allauth.account.middleware.AccountMiddleware'
 # 45 logout admin// runserver // go to /accounts/signup //add new 

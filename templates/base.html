@@ -76,6 +76,21 @@
         </div>
       </nav>
 
+      <!-- 66 -->
+      <!-- 67 js -->
+      <div class="container messages-container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible fade show" id="messages" role="alert">
+                    {{ message | safe }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
 <!-- #32 main-container -->
     <main class="main-bg main-body">
       <!-- #47 -->
