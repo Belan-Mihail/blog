@@ -50,12 +50,15 @@
               {% if user.is_authenticated %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbar-button" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Profile//Logout
+                  User Menu
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">Profile</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'recipe_create' %}">Add Post</a></li>
+                  <!-- 73 -->
                 </ul>
               </li>
               {% else %}

@@ -1,11 +1,18 @@
 from django.shortcuts import render, get_object_or_404, reverse
-from django.views import generic, View
+from django.views import generic, View 
+from django.views.generic import (
+    CreateView,
+    UpdateView,
+    DeleteView
+)
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .models import RecipePost
-from .forms import CommentForm
+from .forms import CommentForm, RecipePostCreateForm
 
-# 56 import CommentForm and go to RecipePostDetail
+# 56 import CommentForm and go to RecipePostDetail 
 
+# 70 import Views and Forms nd from django.contrib.auth.decorators import login_require
 
 # 33 import View, get 404 function
 
@@ -99,3 +106,20 @@ class PostLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('recipe_post_detail', args=[slug]))
+
+# 70
+# 71 urls.py
+# @login_required
+class RecipePostCreateView(CreateView):
+    """
+    
+    """
+    model = RecipePost
+    template_name = 'recipe_create.html'
+    form_class = RecipePostCreateForm
+
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.save()
+        return super().form_valid(form)

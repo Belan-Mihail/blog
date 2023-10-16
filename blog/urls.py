@@ -1,5 +1,7 @@
 from . import views
 from django.urls import path
+from .views import RecipePostCreateView
+
 
 # 17 import and path
 urlpatterns = [
@@ -10,5 +12,8 @@ urlpatterns = [
     # 64
     # 65 setting project import
     path('like/<slug:slug>', views.PostLike.as_view(), name='post_like'),
+    # 71
+    # 72 create template 
+    path('recipe/create/', RecipePostCreateView.as_view(), name='recipe_create'),
 ]
 # 18 urls.py project
