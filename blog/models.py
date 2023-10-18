@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.template.defaultfilters import slugify
+from django.urls import reverse
 # 2 import 
 
 # 3 create RecipePost Model
@@ -33,6 +35,17 @@ class RecipePost(models.Model):
 
     def __str__(self):
         return self.recipe_title
+    
+
+    def get_absolute_url(self):
+        return reverse('recipe_post_detail', kwargs={'slug': self.slug})
+    
+
+    def save(self, *args, **kwargs):  
+        if not self.slug:
+            self.slug = slugify(self.recipe_title)
+        return super().save(*args, **kwargs)
+
 
     def number_of_likes(self):
         return self.likes.count()

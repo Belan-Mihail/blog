@@ -5,10 +5,12 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from django.contrib.auth.decorators import login_required
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import HttpResponseRedirect
 from .models import RecipePost
-from .forms import CommentForm, RecipePostCreateForm
+from .forms import CommentForm, RecipePostCreateForm, RecipePostUpdateForm
+
 
 # 56 import CommentForm and go to RecipePostDetail 
 
@@ -33,6 +35,8 @@ class RecipesPostList(generic.ListView):
 # add comment
 # 35 urls
 class RecipePostDetail(View):
+
+    model = RecipePost
 
     def get(self, request, slug, *args, **kwargs):
         queryset = RecipePost.objects.filter(status=1)
@@ -84,6 +88,7 @@ class RecipePostDetail(View):
             "post_detail.html",
             {
                 "post": post,
+                "slug": slug,
                 "comments": comments,
                 # 60
                 "commented": True,
@@ -109,17 +114,69 @@ class PostLike(View):
 
 # 70
 # 71 urls.py
-# @login_required
-class RecipePostCreateView(CreateView):
+
+class RecipePostCreateView(SuccessMessageMixin, CreateView):
     """
     
     """
     model = RecipePost
     template_name = 'recipe_create.html'
     form_class = RecipePostCreateForm
+    success_url = '/'
+    success_message = 'Your recipe is is awaiting administrator approval'
+
+    
 
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.recipe_author = self.request.user
         form.save()
         return super().form_valid(form)
+
+
+# 76 and import RecipePostUpdateForm and UserPassesTestMixin
+# 77 template
+class RecipePostUpdateView(SuccessMessageMixin,
+                          UserPassesTestMixin,
+                          UpdateView):
+    """
+    A class view to update the existing story by user
+    """
+    model = RecipePost
+    template_name = 'recipe_update.html'
+    form_class = RecipePostUpdateForm
+    success_url = '/'
+    success_message = 'Your updated recipe is awaiting administrator approval'
+
+
+    def form_valid(self, form):
+        form.instance.recipe_author = self.request.user
+        form.instance.status = 0
+        return super().form_valid(form)
+
+    def test_func(self):
+        if self.request.user != self.get_object().recipe_author:
+                messages.info(request, 'Editing an article is available only to the author')
+                return False
+        return True
+
+# 79
+# 80 urls
+class RecipePostDeleteView(SuccessMessageMixin,
+                          UserPassesTestMixin,
+                          DeleteView):
+    """
+    A class view to delete the story by user
+    """
+    model = RecipePost
+    success_url = '/'
+    template_name = 'recipe_delete.html'
+    context_object_name = 'recipe'
+    success_message = 'Your post has been deleted successfully!'
+
+
+    def test_func(self):
+        if self.request.user != self.get_object().recipe_author:
+                messages.info(request, 'EditDeleting an article is available only to the author')
+                return False
+        return True

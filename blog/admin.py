@@ -19,6 +19,7 @@ class RecipePostAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('recipe_title',)}
     search_fields = ['recipe_title', 'recipe_body']
     list_filter = ('status', 'created_on')
+    list_display=('recipe_title', 'slug', 'status')
     summernote_fields = ('recipe_body')
 
 # 11 migrate (without makemigrations)

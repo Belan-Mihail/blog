@@ -1,20 +1,18 @@
 {% extends 'base.html' %} {% block content %}
 {% load crispy_forms_tags %}
 
-<!-- 72 -->
-<!-- 73 base html -->
-<!-- 74 add styles (i diddnt do this hier) -->
-<!-- 75 forms -->
+<!-- 76 how add styles-->
+<!-- 77 urls -->
 <div class="card mb-3">
     <div class="">
         <div class="">
-            <h2>Add Your Recipe</h2>
+            <h2>Update Your Recipe</h2>
         </div>
-        <form method="post" action="{% url 'recipe_create' %}" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
             <div class="mt-2">
-                <button type="submit" class="btn">Add</button>
+                <button type="submit" class="btn">Update</button>
             </div>
         </form>
     </div>

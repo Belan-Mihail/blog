@@ -21,3 +21,13 @@ class RecipePostCreateForm(forms.ModelForm):
     class Meta:
         model = RecipePost
         fields = ('recipe_title', 'recipe_image', 'excerpt', 'recipe_body')
+
+# 75
+# 76 views
+class RecipePostUpdateForm(forms.ModelForm):
+    """
+    Form for posts  to the site
+    """
+    class Meta:
+        model = RecipePost
+        fields = ('recipe_title', 'recipe_image', 'excerpt', 'recipe_body')

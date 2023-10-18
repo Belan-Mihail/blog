@@ -1,6 +1,6 @@
 from . import views
 from django.urls import path
-from .views import RecipePostCreateView
+from .views import RecipePostCreateView, RecipePostUpdateView, RecipePostDeleteView
 
 
 # 17 import and path
@@ -15,5 +15,12 @@ urlpatterns = [
     # 71
     # 72 create template 
     path('recipe/create/', RecipePostCreateView.as_view(), name='recipe_create'),
+    # 77 import
+    # 78 add button update to detail.views
+    path('recipe/<slug:slug>/update/', RecipePostUpdateView.as_view(), name='recipe_update'),
+    # 80 import
+    # 81 templatest
+    path('recipe/<slug:slug>/delete/', RecipePostDeleteView.as_view(), name='recipe_delete'),
+
 ]
 # 18 urls.py project

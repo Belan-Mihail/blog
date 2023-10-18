@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+{% load crispy_forms_tags %}
+
+<!-- 80 -->
+<!-- 81 post detail -->
+<div class="card mb-3">
+    <div class="">
+        <div class="">
+            <h2>Deleting Your Recipe</h2>
+        </div>
+        
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="alert alert-warning" role="alert">
+                    <i class="fas fa-info-circle"></i> You are about to delete your recipe: <strong>{{ recipe.recipe_title }}</strong>, you confirm your action?
+                </div>
+                <div class="d-grid gap-2 d-md-block mt-2">
+                    <button type="submit" class="btn">Delete recipe</button>
+                    <a href="{{ recipe.get_absolute_url }}" class="btn">Cancel</a>
+                </div>
+            </form>
+    </div>
+</div>
+
+{%endblock%}

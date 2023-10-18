@@ -27,6 +27,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     # 41
     # 42 settings
+    
 ]
 
 # 10 admin
