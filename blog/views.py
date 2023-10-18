@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View 
 from django.views.generic import (
     CreateView,
@@ -9,7 +9,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import HttpResponseRedirect
 from .models import RecipePost
-from .forms import CommentForm, RecipePostCreateForm, RecipePostUpdateForm
+from .forms import Comment, CommentForm, RecipePostCreateForm, RecipePostUpdateForm
 
 
 # 56 import CommentForm and go to RecipePostDetail 
@@ -78,7 +78,7 @@ class RecipePostDetail(View):
             comment_form.instance.email = request.user.email
             comment_form.instance.name = request.user.username
             comment = comment_form.save(commit=False)
-            comment.post = post
+            comment.recipe_post = post
             comment.save()
         else:
             comment_form = CommentForm()
@@ -98,6 +98,15 @@ class RecipePostDetail(View):
                 # 57 details.html
             },
         )
+
+
+#83 import Comment and Redirect (change name in view urls and templates)
+# 84 urls
+def deletecomment(request, id):
+    comment = get_object_or_404(Comment, id=id)
+    comment.delete()
+    success_message = 'Your comment has been deleted successfully!'
+    return redirect(comment.recipe_post.get_absolute_url()) 
 
 # 62 and import HttpResponseRedirect and reverse
 # 63 post detail
@@ -177,6 +186,6 @@ class RecipePostDeleteView(SuccessMessageMixin,
 
     def test_func(self):
         if self.request.user != self.get_object().recipe_author:
-                messages.info(request, 'EditDeleting an article is available only to the author')
+                messages.info(request, 'Deleting an article is available only to the author')
                 return False
         return True

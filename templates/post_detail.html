@@ -55,7 +55,8 @@
     <div class="div">
          <a class="btn mt-1 mb-1" href="{% url 'recipe_update' post.slug %}">Update Recipe</a>
     </div>
-    <!-- 80 -->
+    <!-- 82 -->
+    <!-- 83 views comment delete -->
     <div class="div">
         <a class="btn mt-1 mb-1" href="{% url 'recipe_delete' post.slug %}">Delete Recipe</a>
    </div>
@@ -79,6 +80,12 @@
                     <p>{{ comment.body }}</p>
                     <hr>
                 </div>
+                <!-- 85 need add style-->
+                {% if comment.name == user.username %}
+                <div class="div">
+                    <a class="btn mt-1 mb-1" href="{% url 'blog_comment' comment.id %}">Delete Comment</a>
+               </div>
+               {% endif %}
                 <!-- Our for loop ends here -->
                 {% endfor %}
             </div> 
@@ -93,6 +100,14 @@
                 <div class="alert alert-success" role="alert">
                     Your comment is awaiting approval
                 </div>
+
+                <h3>Leave a comment:</h3>
+                <p>Posting as: {{ user.username }}</p>
+                <form method="post" class="comments-form">
+                    {{ comment_form | crispy }}
+                    {% csrf_token %}
+                    <button type="submit" class="btn submit-comments">Submit</button>
+                </form>
                 {% else %}
 
                 {% if user.is_authenticated %}
