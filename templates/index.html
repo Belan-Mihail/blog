@@ -69,9 +69,11 @@
       <div class="p-4 mb-3 bg-light rounded">
         
         <!-- 91 need add css -->
+        <!-- 92 models Category -->
         <h3 class="fst-italic">Categories</h3>
         {% for c in categor %} 
-        <p class="mb-0"><a href="">{{ c.name }}</a></p>
+        <!-- 95 -->
+        <p class="mb-0"><a href="{{c.get_absolute_url}}">{{ c.name }}</a></p>
         {% endfor %}
       </div>
       

@@ -26,8 +26,9 @@ urlpatterns = [
     # 80 import
     # 81 templatest
     path('recipe/<slug:slug>/delete/', RecipePostDeleteView.as_view(), name='recipe_delete'),
-    # !!!!!
-    # path('category/<int:id>/', RecipePostCategory.as_view(), name='category'),
+    # 94 import RecipePostCategory and below
+    # 95 index html add a href
+    path('category/<slug:cat_slug>/', RecipePostCategory.as_view(), name='category'),
     
 
 ]

@@ -229,16 +229,17 @@ class RecipePostDeleteView(SuccessMessageMixin,
                 return False
         return True
 
-# !!!!
-# class RecipePostCategory(generic.ListView):
-#     model = RecipePost
-#     template_name = 'index.html'
-#     context_object_name = 'recipes_post_list'
+# 93
+# 94 urls
+class RecipePostCategory(generic.ListView):
+    model = RecipePost
+    template_name = 'index.html'
+    context_object_name = 'recipes_post_list'
     
-#     def get_context_data(self,**kwargs):
-#         context = super(RecipePostCategory, self).get_context_data(**kwargs)
-#         context['categor'] = Category.objects.all()
-#         return context
+    def get_context_data(self,**kwargs):
+        context = super(RecipePostCategory, self).get_context_data(**kwargs)
+        context['categor'] = Category.objects.all()
+        return context
  
-#     def get_queryset(self):
-#         return RecipePost.objects.filter(pk=self.kwargs['id'])
+    def get_queryset(self):
+        return RecipePost.objects.filter(cat__slug=self.kwargs['cat_slug'])

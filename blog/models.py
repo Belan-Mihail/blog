@@ -82,9 +82,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    # !!!!!!!
-    # def get_absolute_url(self):
-    #     return reverse('category', kwargs={'cat_id': self.pk})
+    # 92
+    # 93 views RecipePostCategory
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'cat_slug': self.slug})
 
     class Meta:
         ordering = ["id"]
