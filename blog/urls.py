@@ -1,11 +1,12 @@
 from . import views
 from django.urls import path
-from .views import RecipePostCreateView, RecipePostUpdateView, RecipePostDeleteView
+from .views import RecipePostCreateView, RecipePostUpdateView, RecipePostDeleteView, RecipePostCategory
 
 
 # 17 import and path
 urlpatterns = [
     path("", views.RecipesPostList.as_view(), name="home"),
+    
     # 35 add path to detail.html update index.html add links to the each posts, add check code post-detail
     # 36 index
     path('<slug:slug>/', views.RecipePostDetail.as_view(), name='recipe_post_detail'),
@@ -25,6 +26,9 @@ urlpatterns = [
     # 80 import
     # 81 templatest
     path('recipe/<slug:slug>/delete/', RecipePostDeleteView.as_view(), name='recipe_delete'),
+    # !!!!!
+    # path('category/<int:id>/', RecipePostCategory.as_view(), name='category'),
+    
 
 ]
 # 18 urls.py project

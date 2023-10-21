@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.views.generic import ListView
 from django.views import generic, View 
 from django.views.generic import (
     CreateView,
@@ -8,7 +9,7 @@ from django.views.generic import (
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import HttpResponseRedirect
-from .models import RecipePost
+from .models import RecipePost, Category
 from .forms import Comment, CommentForm, RecipePostCreateForm, RecipePostUpdateForm
 
 
@@ -20,12 +21,50 @@ from .forms import Comment, CommentForm, RecipePostCreateForm, RecipePostUpdateF
 
 # 15 import RecipePost and generic
 # add comments
+
+
 class RecipesPostList(generic.ListView):
     model = RecipePost
     queryset = RecipePost.objects.filter(status=1).order_by("-created_on")
     template_name = "index.html"
     paginate_by = 5
     context_object_name = 'recipes_post_list'
+    # 90 
+    # 91 index.html categories
+    def get_context_data(self,**kwargs):
+        context = super(RecipesPostList, self).get_context_data(**kwargs)
+        context['categor'] = Category.objects.all()
+        return context
+
+# def post_list(request):
+    """
+    Display a list of published and approved posts, paginated.
+
+    Parameters:
+        request (HttpRequest): the HTTP request object
+
+    Returns:
+        HttpResponse: the HTTP response object with the rendered template
+    """
+    # post_list = Post.objects.filter(status="published", approved=True)
+    # categories = Category.objects.all()
+    # paginator = Paginator(post_list, 3)
+    # page = request.GET.get("page")
+    # try:
+    #     posts = paginator.page(page)
+    # except PageNotAnInteger:
+    #     posts = paginator.page(1)
+
+    # template = ["blog/post/post_list.html"]
+    # context = {
+    #     "page_title": "Coding Articles",
+    #     "posts": posts,
+    #     "categories": categories,
+    #     "page": page,
+    # }
+    # return render(request, template, context)
+
+    
 
 # 16 index.html, base.html, css/style.css, js
 # 17 urls.py blog
@@ -189,3 +228,17 @@ class RecipePostDeleteView(SuccessMessageMixin,
                 messages.info(request, 'Deleting an article is available only to the author')
                 return False
         return True
+
+# !!!!
+# class RecipePostCategory(generic.ListView):
+#     model = RecipePost
+#     template_name = 'index.html'
+#     context_object_name = 'recipes_post_list'
+    
+#     def get_context_data(self,**kwargs):
+#         context = super(RecipePostCategory, self).get_context_data(**kwargs)
+#         context['categor'] = Category.objects.all()
+#         return context
+ 
+#     def get_queryset(self):
+#         return RecipePost.objects.filter(pk=self.kwargs['id'])

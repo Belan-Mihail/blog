@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import RecipePost, Comment
+from .models import RecipePost, Comment, Category
 from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
@@ -36,3 +36,12 @@ class CommentAdmin(admin.ModelAdmin):
     def approve_comments(self, request, queryset):
         queryset.update(approved=True)
 # views.py
+
+# 87 and import Category
+# 88 migration and create 3 categories and 1 article
+# 89 forms
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug', 'id')
+    prepopulated_fields = {"slug": ("name", )}
+    

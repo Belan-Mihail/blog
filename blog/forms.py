@@ -20,7 +20,7 @@ class RecipePostCreateForm(forms.ModelForm):
     """
     class Meta:
         model = RecipePost
-        fields = ('recipe_title', 'recipe_image', 'excerpt', 'recipe_body')
+        fields = ('recipe_title', 'cat', 'recipe_image', 'excerpt', 'recipe_body')
 
 # 75
 # 76 views
@@ -30,4 +30,7 @@ class RecipePostUpdateForm(forms.ModelForm):
     """
     class Meta:
         model = RecipePost
-        fields = ('recipe_title', 'recipe_image', 'excerpt', 'recipe_body')
+        fields = ('recipe_title', 'cat', 'recipe_image', 'excerpt', 'recipe_body')
+
+# 89 add "cat" to the RecipePostUpdateForm and RecipePostCreateForm
+# 90 views RecipesPostList

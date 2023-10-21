@@ -27,6 +27,8 @@ class RecipePost(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
         User, related_name='recipepost_like', blank=True)
+    # 86 null=true delete in the project
+    cat = models.ForeignKey('Category', on_delete=models.PROTECT, related_name="categories", null=True)
 
     class Meta:
         ordering = ["-created_on"]
@@ -70,3 +72,21 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
+
+# 86 and add cat_id to the RecipePost Models
+# 87 admin
+class Category(models.Model):
+    name = models.CharField(max_length=100, db_index=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True)
+
+    def __str__(self):
+        return self.name
+
+    # !!!!!!!
+    # def get_absolute_url(self):
+    #     return reverse('category', kwargs={'cat_id': self.pk})
+
+    class Meta:
+        ordering = ["id"]
+        verbose_name = "category"
+        verbose_name_plural = "categories"
