@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>1</p>
+
+<h2 class="h4 text-capitalize font-weight-bold">{{ user.username }}</h2>
+
+<p>{{ user.profile.bio }}</p>
+
+<div>
+    <img src="{{user.profile.avatar}}" alt="">
+</div>
+
+<p>{{user.profile.birth_date}}</p>
+<!-- user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar = CloudinaryField('image', default='placeholder')
+    bio = models.TextField(max_length=500, blank=True)
+    birth_date = models.DateField(null=True, blank=True) -->
+
+{%endblock%}

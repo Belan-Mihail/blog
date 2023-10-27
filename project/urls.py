@@ -27,6 +27,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     # 41
     # 42 settings
+    path('profile_page/', include('profilepage.urls'), name='profile_page'),
     
 ]
 

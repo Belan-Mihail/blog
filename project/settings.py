@@ -57,6 +57,9 @@ INSTALLED_APPS = [
     # 53 and below one more #53
     'crispy_forms',
     'blog',
+    'profilepage',
+    # 95 python3 manage.py startapp profilepage and add profilepage here
+    # 96 models
 ]
 # 8 add summernote
 # 9 urls project
