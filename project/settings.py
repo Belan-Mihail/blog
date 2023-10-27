@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["myblognew-81ed04563378.herokuapp.com", "localhost", "8000-belanmihail-blog-kl96wws1ue8.ws-eu105.gitpod.io"]
+ALLOWED_HOSTS = ["8000-belanmihail-blog-1yt4ynabkdq.ws-eu105.gitpod.io", "myblognew-81ed04563378.herokuapp.com", "localhost", "8000-belanmihail-blog-kl96wws1ue8.ws-eu105.gitpod.io"]
 
 
 # Application definition
@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     'django_summernote',
     # 53 and below one more #53
     'crispy_forms',
-    'crispy_bootstrap4',
     'blog',
 ]
 # 8 add summernote
