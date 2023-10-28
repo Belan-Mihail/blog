@@ -30,6 +30,7 @@ urlpatterns = [
     # 95 index html add a href
     path('category/<slug:cat_slug>/', RecipePostCategory.as_view(), name='category'),
     
+    
 
 ]
 # 18 urls.py project

@@ -6,13 +6,12 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
     avatar = CloudinaryField('image', default='placeholder')
     bio = models.TextField(max_length=500, blank=True)
     birth_date = models.DateField(null=True, blank=True)
 
 
-def get_absolute_url(self):
-        return reverse('profile_page', kwargs={'pk': self.pk})
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

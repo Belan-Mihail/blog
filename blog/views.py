@@ -243,3 +243,5 @@ class RecipePostCategory(generic.ListView):
  
     def get_queryset(self):
         return RecipePost.objects.filter(cat__slug=self.kwargs['cat_slug'])
+
+
