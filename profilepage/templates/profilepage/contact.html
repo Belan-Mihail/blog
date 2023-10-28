@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="slogan-container">
+    <h2 class="slogan">We are waiting for your feedback</h2>
+</div>
+
+<div class="card mb-3">
+    <div class="">
+        <h2>Add Your Feedback</h2>
+    </div>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if success %}
+        <div class="alert">
+            <strong>Thank you, your message has been sent</strong>
+        </div>
+        {% endif %}
+        {{ form|crispy }}
+        <div class="mt-2">
+            <button type="submit" class="btn">Sent</button>
+        </div>
+    </form>
+</div>
+
+{%endblock%}
+<!-- contact, view, urls, base.html, forms, views, 
+  contact views post, add alert, add styles to new button and media queries
+message.html ??,  -->

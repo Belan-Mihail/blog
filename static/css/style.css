@@ -80,11 +80,14 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--light-color);
     font-size: 1.2rem;
     max-width: 12rem;
+    margin-right: .5rem;
+    margin-top: .5rem;
 }
 
 .dropdown-menu {
     background: var(--dark-color);
     color: var(--light-color); 
+    
 }
 
 .dropdown-menu a {
@@ -309,6 +312,13 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   /* media queries */
+
+  @media screen and (max-width: 992px) {
+    .navbar-button {
+      margin-top: .3rem;
+      max-width: 8rem;
+    }
+  }
 
   @media screen and (max-width: 910px) {
     .slogan {
