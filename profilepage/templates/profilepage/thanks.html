@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="mt-2 alert alert-success" role="alert">
+    <strong>Thank you, your message has been sent</strong>
+</div>
+<div class="mt-2">
+    <strong>Would you like to send another message?</strong>
+</div>
+<div class="mt-2">
+    <a class="btn" href="{% url 'contact' %}">Contact Us Again</a>
+    <a class="btn" href="{% url 'home' %}">Back to Home Page</a>
+</div>
+
+
+{%endblock%}

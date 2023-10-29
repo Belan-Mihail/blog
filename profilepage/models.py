@@ -13,16 +13,25 @@ class Profile(models.Model):
 
 
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
 
-@receiver(post_save, sender=User)
-def save_profile(sender, instance, created, **kwargs):
-    user = instance
-    if created:
-        profile = Profile(user=user)
-        profile.save()
+# @receiver(post_save, sender=User)
+# def save_profile(sender, instance, created, **kwargs):
+#     user = instance
+#     if created:
+#         profile = Profile(user=user)
+#         profile.save()
 
 # 96 view
+
+class Contact(models.Model):
+    name = models.CharField(max_length=120)
+    email = models.EmailField()
+    message = models.TextField(max_length=1000)
+
+
+    def __str__(self):
+        return self.name

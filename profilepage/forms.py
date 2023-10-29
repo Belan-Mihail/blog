@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Profile
+from .models import Profile, Contact
 
 class ProfileForm(forms.ModelForm):
     """
@@ -12,16 +12,30 @@ class ProfileForm(forms.ModelForm):
         fields = ['avatar', 'bio', 'birth_date']
 
 
-class ContactForm(forms.Form):
-    name = forms.CharField(
-        max_length=100, 
-        widget=forms.TextInput(
-            attrs={'placeholder': 'Your name'}))
-    email = forms.EmailField(
-        widget=forms.EmailInput(
-            attrs={'placeholder': 'Your name'})
-    )
-    message = forms.CharField(
-        widget=forms.Textarea(
-            attrs={'placeholder': 'Your message', 'class': 'feedback'})
-    )
+class ContactForm(forms.ModelForm):
+
+    class Meta:
+        model = Contact
+
+        fields = ['name', 'email', 'message']
+
+ 
+        widgets = {
+            'name': forms.TextInput(
+                attrs={
+                    'placeholder': 'Your name'
+                }
+            ),
+            'email': forms.EmailInput(
+                attrs={
+                    'placeholder': 'Your email'
+                }
+            ),
+            'message': forms.Textarea(
+                attrs={
+                    'placeholder': 'Your message'
+                }
+            )
+        }
+
+    

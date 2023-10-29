@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
 from django.views import View
-from django.views.generic import (ListView, UpdateView, DetailView, DeleteView)
+from django.views.generic import (ListView, UpdateView, CreateView, DetailView, DeleteView)
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -13,6 +13,25 @@ from blog.models import RecipePost
 from django.contrib.auth.decorators import login_required
 from django import template
 from django.core.mail import get_connection, EmailMultiAlternatives
+from django.core.mail import send_mail
+
+
+class CreateProfileView(SuccessMessageMixin, CreateView):
+    """
+    A class view to update
+    user profile
+    """
+    model = Profile
+    form_class = ProfileForm
+    success_url = '/profile_page/profile_page'
+    template_name = 'profilepage/create_profile.html'
+    success_message = 'Your profile has been created successfully!'
+
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 class UserProfilePageView(DetailView):
     """
@@ -60,45 +79,40 @@ class UserUpdateProfile(SuccessMessageMixin, UpdateView):
         return super().form_valid(form)
 
 
+
 def contact(request):
-    context = {}
+    success = False
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            send_message(
-                form.cleaned_data['name'],
-                form.cleaned_data['email'],
-                form.cleaned_data['message']
-            )
+            form.save()
             return render(
             request,
-            'profilepage/contact.html',
-            {'success': True}
+            'profilepage/thanks.html'
             )
     else:
         form = ContactForm()
-    context['form'] = form
     return render(
         request,
         'profilepage/contact.html',
-        context=context
+        {'form': form}
     )
 
 
-def send_message():
-    text = get_template('message.html')
+# def send_message():
+#     text = get_template('message.html')
     # html = get_template('message.html')
-    context = {
-        "name": name,
-        "email": email,
-        "message": message
-    }
-    subject = "Message from user"
-    from_email: 'example@email.com'
-    text_content = text.render(context)
+    # context = {
+    #     "name": name,
+    #     "email": email,
+    #     "message": message
+    # }
+    # subject = "Message from user"
+    # from_email: 'example@email.com'
+    # text_content = text.render(context)
     # html_content = html.render(context)
 
-    msg = EmailMultiAlternatives(subject, text_content, from_email, ['bilanmo1488@gmail.com'])
-    msg.send()
+    # msg = EmailMultiAlternatives(subject, text_content, from_email, ['bilanmo1488@gmail.com'])
+    # msg.send()
 
     # anothe variant - add to contact model field contact email
